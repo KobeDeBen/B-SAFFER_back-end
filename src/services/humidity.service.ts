@@ -5,9 +5,9 @@ import { InfluxService } from './influx.service';
 export class HumidityService {
   constructor(private readonly influxService: InfluxService) {}
 
-    async getHumidity(): Promise<any[]> {
+    async getHumidity(range: string): Promise<any[]> {
         const fluxQuery = `from(bucket:"B-SAFFER_data") 
-                            |> range(start: -2h) 
+                            |> range(start: ${range})
                             |> filter(fn: (r) => r._field == "humidity")`;
         const queryApi = this.influxService.getQueryApi();
         const results: any[] = [];

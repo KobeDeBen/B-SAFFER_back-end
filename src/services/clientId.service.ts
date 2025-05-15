@@ -5,9 +5,9 @@ import { InfluxService } from './influx.service';
 export class ClientIDService {
   constructor(private readonly influxService: InfluxService) {}
 
-    async getclientID(): Promise<any[]> {
+    async getclientID(range: string): Promise<any[]> {
         const fluxQuery = `from(bucket:"B-SAFFER_data") 
-                            |> range(start: -2h) 
+                            |> range(start: ${range})
                             |> filter(fn: (r) => r._field == "clientID")`;
         const queryApi = this.influxService.getQueryApi();
         const results: any[] = [];
