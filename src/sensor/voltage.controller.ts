@@ -3,11 +3,13 @@ import { TemperatureService } from 'src/services/temperature.service';
 
 @Controller('voltage')
 export class VoltageController {
-    constructor(private readonly service: TemperatureService) {}
+  constructor(private readonly service: TemperatureService) {}
 
-    @Get()
-    async getData(@Query('range') range: string) {
-      const timeRange = range;
-      return await this.service.getFieldData("voltage", timeRange);
-    }
+  @Get()
+  async getData(
+    @Query('start') start: string,
+    @Query('stop') stop?: string
+  ) {
+    return await this.service.getFieldData('voltage', start, stop);
+  }
 }

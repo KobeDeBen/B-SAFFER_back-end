@@ -6,8 +6,10 @@ export class PressureController {
     constructor(private readonly service: TemperatureService) {}
 
     @Get()
-    async getData(@Query('range') range: string) {
-      const timeRange = range;
-      return await this.service.getFieldData("pressure", timeRange);
-    }
+  async getData(
+    @Query('start') start: string,
+    @Query('stop') stop?: string
+  ) {
+    return await this.service.getFieldData('pressure', start, stop);
+  }
 }
