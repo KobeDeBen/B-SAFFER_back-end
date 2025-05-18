@@ -8,6 +8,6 @@ export class TemperatureController {
     @Get()
     async getData(@Query('range') range: string) {
       const timeRange = range;
-      return await this.tempService.getTemperature(timeRange);
+      return await this.tempService.getFieldData("temperature", timeRange);
     }
 }

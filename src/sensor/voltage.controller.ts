@@ -1,13 +1,13 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { VoltageService } from 'src/services/voltage.service';
+import { TemperatureService } from 'src/services/temperature.service';
 
 @Controller('voltage')
 export class VoltageController {
-    constructor(private readonly voltageService: VoltageService) {}
+    constructor(private readonly service: TemperatureService) {}
 
     @Get()
     async getData(@Query('range') range: string) {
       const timeRange = range;
-      return await this.voltageService.getVoltage(timeRange);
+      return await this.service.getFieldData("voltage", timeRange);
     }
 }
